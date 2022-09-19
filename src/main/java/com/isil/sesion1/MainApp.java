@@ -6,9 +6,13 @@ public class MainApp {
 
     public static void main(String[] args) throws Exception {
 
+
+        // 1. Cargar driver
         //PASO1 importar el driver
 
         Class.forName("com.mysql.cj.jdbc.Driver");
+
+        // 1. CREAR CONEXION
 
         //PASO2 establecer la coneccion a la base de datos
 
@@ -18,25 +22,38 @@ public class MainApp {
                 "root"
         );
 
+        // 3. CREAR STATEMENT
+
         //PASO3 creacion de un statement que me va a permitir ejecutar querys
 
-        Statement stmt= con.createStatement();
+
+        // 4.EJECUTAR QUERY
+
         //HACER UN UPDATE
-        int resulUpdate = stmt.executeUpdate("update Users set phone='44445444' where name='Messi'");
+
 
         //HACER UN SELECT *
-        ResultSet result = stmt.executeQuery("select * from Users");
-
-        while (result.next()){
-            //PARA MOSTRAR UN REGISTRO EN ESPECÍFICO
-            if (result.getString("name").equals("Ronaldo")){
-                System.out.println(result.getString("idUser"));
-                System.out.println(result.getString("name"));
-                System.out.println(result.getString("phone"));
-                System.out.println(result.getString("city"));
-            }
 
 
+
+        //5. RECORRER RESULTADO
+
+
+
+        //CREANDO UN NUEVO STATEMENT
+        Statement stmt2= con.createStatement();
+        ResultSet resultSet = stmt2.executeQuery("select * from Users where name='Ronaldo'");
+
+        while (resultSet.next()){
+
+                System.out.println(resultSet.getString("name") + "\n" +
+                        resultSet.getString("phone")+"\n"+
+                        resultSet.getString("city"));
         }
+
+        //6.CERRAR CONEXION
+
+        con.close();
+
     }
 }

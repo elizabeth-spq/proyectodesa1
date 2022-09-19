@@ -2,3 +2,9 @@
 
 .idea
 target
+
+
+# git status   :para ver cambios nuevos
+# git add  :para agregar todos los cambios
+# git commit -m  :para agregar un mensaje
+# git push  :Para subir cambios al repositorio
